@@ -32,7 +32,14 @@ pipeline {
     stage('Build') {
       steps {
         // Compile the app and its dependencies
-        bat './gradlew clean assemble'
+        bat './gradlew clean assembleRelease'
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        // Compile the app and its dependencies
+        archiveArtifacts artifacts: '**/*.apk', fingerprint: true, onlyIfSuccessful: true
       }
     }
   }   
