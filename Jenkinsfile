@@ -25,7 +25,7 @@ pipeline {
     stage('Compile') {
       steps {
         // Compile the app and its dependencies
-        sh './gradlew clean'
+        sh './gradlew wrapper --gradle-version=7.3.3'
       }
     }
   }   
