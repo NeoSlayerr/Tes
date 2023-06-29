@@ -28,6 +28,13 @@ pipeline {
         bat './gradlew wrapper --gradle-version=7.3.3'
       }
     }
+
+    stage('Build') {
+      steps {
+        // Compile the app and its dependencies
+        bat './gradlew clean assemble'
+      }
+    }
   }   
     
 }
