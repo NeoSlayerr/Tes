@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  parameters{
+    choice(name: 'choice', choices: ['Release', 'Debug'], description: 'Pick something')
+  }
   environment {
     APP_NAME = 'test'
   }
@@ -32,7 +35,7 @@ pipeline {
     stage('Build') {
       steps {
         // Compile the app and its dependencies
-        bat './gradlew clean assembleRelease'
+        bat './gradlew clean assemble${choice}'
       }
     }
 
