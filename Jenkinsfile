@@ -12,14 +12,14 @@ pipeline {
   }
   stages {
    
-    stage('Detect build type') {
-      steps {
-        script {
-          env.APP_NAME = ${params.choice}
-        }
+    // stage('Detect build type') {
+    //   steps {
+    //     script {
+    //       env.APP_NAME = ${params.choice}
+    //     }
         
-      }
-    }
+    //   }
+    // }
     
     stage('Compile') {
       steps {
@@ -31,7 +31,7 @@ pipeline {
     stage('Build') {
       steps {
         // Compile the app and its dependencies
-        bat './gradlew clean assemble${env.APP_NAME}'
+        bat "./gradlew clean assemble${params.choice}"
       }
     }
 
