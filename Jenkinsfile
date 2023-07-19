@@ -15,11 +15,7 @@ pipeline {
     stage('Detect build type') {
       steps {
         script {
-          if (env.BRANCH_NAME == 'develop' || env.CHANGE_TARGET == 'develop') {
-            env.BUILD_TYPE = 'debug'
-          } else if (env.BRANCH_NAME == 'master' || env.CHANGE_TARGET == 'master') {
-            env.BUILD_TYPE = 'release'
-          }
+          env.BUILD_TYPE = ${params.choice}
         }
         
       }
@@ -35,7 +31,7 @@ pipeline {
     stage('Build') {
       steps {
         // Compile the app and its dependencies
-        bat './gradlew clean assemble${params.choice}'
+        bat './gradlew clean assemble${env.BUILD_TYPE}'
       }
     }
 
