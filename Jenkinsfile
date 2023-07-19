@@ -35,7 +35,7 @@ pipeline {
     stage('Build') {
       steps {
         // Compile the app and its dependencies
-        bat './gradlew clean assemble${choice}'
+        bat './gradlew clean assemble${params.choice}'
       }
     }
 
