@@ -3,23 +3,12 @@ pipeline {
   parameters{
     choice(name: 'choice', choices: ['Release', 'Debug'], description: 'Pick something')
   }
-  environment {
-    APP_NAME = 'test'
-  }
+
   options {
     // Stop the build early in case of compile or test failures
     skipStagesAfterUnstable()
   }
   stages {
-   
-    // stage('Detect build type') {
-    //   steps {
-    //     script {
-    //       env.APP_NAME = ${params.choice}
-    //     }
-        
-    //   }
-    // }
     
     stage('Compile') {
       steps {
